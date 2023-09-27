@@ -1,10 +1,18 @@
 'use client'
 
 import '@/styles/style.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowRight, FaSquareFacebook, FaSquareInstagram } from "react-icons/fa6";
+import { FaBalanceScale, FaBalanceScaleLeft, FaBalanceScaleRight, FaMoneyCheckAlt } from "react-icons/fa";
+import { ImCheckmark } from "react-icons/im";
+import Calculator from './components/Calculator';
+import Login from './components/Login';
+import Plan from './components/Plan';
 
 export default function Home() {
+
+  const [modal, setModal] = useState(false);
+  const [modal2, setModal2] = useState(false);
 
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap.bundle.min.js');
@@ -12,7 +20,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="container-fluid header-cont">
+      <Login setModal={setModal} modal={modal}/>
+      <Plan setModal={setModal2} modal={modal2}/>
+      <div className="container-fluid header-cont pe-0">
 
         <div className='header-cont2'>
 
@@ -27,7 +37,9 @@ export default function Home() {
               <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">Planes</a>
+                    <a className="nav-link active" href="#" onClick={() => {
+                      setModal(true)
+                    }}>Login</a>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -71,76 +83,127 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container-fluid plans">
-        <section className='container py-5 text-light'>
-          <div className="nk-block nk-block-problems tc-light">
-            <div className="row g-0 align-items-center">
-              <div className="col-lg-6">
-                <div className="feature boxed boxed-lg bg-theme-alt no-mg split-lg-left split-left animated fadeInUp" >
-                  <h4 className="title title-md">Tipos de planes</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At inventore sunt pariatur ea eligendi harum tempore quo molestiae debitis.</p>
-                  <ul className="list list-dot">
-                    <li>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li><li>Wende omnis iste natus error sit volupt.</li>
-                    <li>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li><li>Exercitation ullamco laboris nisi ut consequ.</li>
-                  </ul>
+
+      <div className="container-fluid">
+        <section className="services-section">
+          <div className="auto-container">
+
+            <h2 className='text-center'>
+              Contamos con diferentes planes
+              <br />
+              que se adapten a tus
+              <span> ingresos</span>
+            </h2>
+
+            <div className="clearfix">
+
+
+              <div className="services-block col-lg-4 col-md-6 col-sm-12">
+                <div className="inner-box inner-box-basic" >
+                  <div className="icon-box">
+                    <h3>MÁS SOLICITADO</h3>
+                  </div>
+                  <h5>BÁSICO</h5>
+                  <p className='text-center'>Para inversiones de mayor riesgo</p>
+                  <hr className='hr-plans' />
+                  <div className="text mt-4">
+                    <div><ImCheckmark className='icon-list' />400 a 4.999 USD</div>
+                    <div><ImCheckmark className='icon-list' />Paga 14% fijo</div>
+                    <div><ImCheckmark className='icon-list' />Inversión USDT</div>
+                    <div><ImCheckmark className='icon-list' />Gana 0.46%</div>
+                  </div>
+                  <button className='btn-style-one mt-0' onClick={() => {
+                    setModal2(true)
+                  }}>
+                    Adquirir
+                    <FaArrowRight className='icon' />
+                  </button>
                 </div>
               </div>
-              <div className="col-lg-6">
-                <div className="feature-group bg-theme-alt split-right split-lg" >
-                  <div className="feature boxed bg-white-7">
-                    <div className="feature-text">
-                      <h4 className="title title-md">BÁSICO</h4>
-                      <ul className="list list-dot">
-                        <li>400 a 4.999 USD</li>
-                        <li>Paga 14% fijo</li>
-                        <li>Inversión USDT</li>
-                        <li>Gana 0.46%</li>
-                      </ul>
-                      <button className='btn-style-two'>
-                        Comprar
-                        <FaArrowRight className='icon' />
-                      </button>
-                    </div>
+
+
+              <div className="services-block col-lg-4 col-md-6 col-sm-12">
+                <div className="inner-box" >
+                  <h5>INVERSOR</h5>
+                  <p className='text-center'>Para inversiones de mayor riesgo</p>
+                  <hr className='hr-plans' />
+                  <div className="text mt-4">
+                    <div><ImCheckmark className='icon-list' />5.000 a 9.999 USD</div>
+                    <div><ImCheckmark className='icon-list' />Paga 10% fijo</div>
+                    <div><ImCheckmark className='icon-list' />Inversión USDT</div>
+                    <div><ImCheckmark className='icon-list' />Gana 0.33%</div>
                   </div>
-                  <div className="feature boxed bg-white-14">
-                    <div className="feature-text">
-                      <h4 className="title title-md">INVERSOR</h4>
-                      <ul className="list list-dot">
-                        <li>5.000 a 9.999 USD</li>
-                        <li>Paga 10% fijo</li>
-                        <li>Inversión USDT</li>
-                        <li>Gana 0.33%</li>
-                      </ul>
-                      <button className='btn-style-two'>
-                        Comprar
-                        <FaArrowRight className='icon' />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="feature boxed bg-white-22">
-                    <div className="feature-text">
-                      <h4 className="title title-md">ELITE</h4>
-                      <ul className="list list-dot">
-                        <li>+10.000 USD</li>
-                        <li>Paga 7% fijo</li>
-                        <li>Inversión USDT</li>
-                        <li>Gana 0.23%</li>
-                      </ul>
-                      <button className='btn-style-two'>
-                        Comprar
-                        <FaArrowRight className='icon' />
-                      </button>
-                    </div>
-                  </div>
+                  <button className='btn-style-two' onClick={() => {
+                    setModal2(true)
+                  }}>
+                    Adquirir
+                    <FaArrowRight className='icon' />
+                  </button>
                 </div>
               </div>
+
+
+              <div className="services-block col-lg-4 col-md-6 col-sm-12">
+                <div className="inner-box" >
+                  <h5>ELITE</h5>
+                  <p className='text-center'>Para inversiones de mayor riesgo</p>
+                  <hr className='hr-plans' />
+                  <div className="text mt-4">
+                    <div><ImCheckmark className='icon-list' />+10.000 USD</div>
+                    <div><ImCheckmark className='icon-list' />Paga 7% fijo</div>
+                    <div><ImCheckmark className='icon-list' />Inversión USDT</div>
+                    <div><ImCheckmark className='icon-list' />Gana 0.23%</div>
+                  </div>
+                  <button className='btn-style-two' onClick={() => {
+                    setModal2(true)
+                  }}>
+                    Adquirir
+                    <FaArrowRight className='icon' />
+                  </button>
+                </div>
+              </div>
+
             </div>
           </div>
-
         </section>
       </div>
 
-      <section>Popular investment</section>
+
+      {/* CALCULATOR */}
+
+      <section className="calc-section" style={{ backgroundColor: "#012068"}}>
+        <div className="auto-container">
+          <div className="row align-items-center" style={{ padding: "130px 0" }}>
+
+            <div className="content-column col-lg-6 col-md-12 col-sm-12 ">
+              <div className="inner-column">
+
+                <div className="sec-title">
+                  <h2>Calcula los beneficios <br /> escogiendo el tipo de <span>inversión</span></h2>
+                </div>
+
+                <div className="text text-light">
+                  <p>Calcula cuales serían las posibles ganancias de una inversión con nuestros paquetes. Aqui encontrarás un aproximado, pero todos estos valores pueden variar en el tiempo, para una asesoría más acertiva te recomendamos que te pongas en contacto con uno de nuestros asesores.</p>
+                  <p>*Nota: los valores mínimos y máximos del porcentaje de ganancia dependen del tipo de inversión seleccionado y el valor ingresado.</p>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div className="video-column col-lg-6 col-md-12 col-sm-12">
+              <div className="inner-column">
+
+
+                <Calculator />
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
 
 
 
@@ -148,11 +211,11 @@ export default function Home() {
         <div className="container">
           <div className="content">
             <h2>Contacto</h2>
-            <div className="text">The argument in favor of using filler text goes something like this: If you use real content in the design process.</div>
+            <div className="text-light my-3">The argument in favor of using filler text goes something like this: If you use real content in the design process.</div>
 
             <div className="quote-form">
               <form method="post">
-                <div className="row clearfix">
+                <div className="row">
 
                   <div className="form-group col-lg-6 col-md-6 col-sm-12 my-2">
                     <input type="text" name="username" placeholder="Como podemos ayudarte*" required="" />
@@ -183,17 +246,17 @@ export default function Home() {
 
       {/* FOOTER */}
 
-      <footer class="footer-bottom container-fluid">
-        <div class="auto-container container">
-          <div class="row clearfix text-light">
+      <footer className="footer-bottom container-fluid">
+        <div className="auto-container container">
+          <div className="row text-light">
 
-            <div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-              <div class="copyright">2023 © Todos los derechos reservados por <a href="#">Financial International</a></div>
+            <div className="copyright-column col-lg-6 col-md-6 col-sm-12">
+              <div className="copyright">2023 © Todos los derechos reservados por <a href="#">Financial International</a></div>
             </div>
 
-            <div class="social-column col-lg-6 col-md-6 col-sm-12">
+            <div className="social-column col-lg-6 col-md-6 col-sm-12">
               <ul>
-                <li class="follow">Siguenos: </li>
+                <li className="follow">Siguenos: </li>
                 <li>
                   <a href="#">
                     <FaSquareFacebook />
