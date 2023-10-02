@@ -2,11 +2,12 @@ import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Inter } from 'next/font/google'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Axes International',
-  description: 'Axes International',
+  title: 'Bonorum',
+  description: 'Bonorum',
 }
 
 export default function RootLayout({ children }) {
