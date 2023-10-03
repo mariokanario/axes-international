@@ -362,6 +362,7 @@ p.adv-description {
 	border-image: linear-gradient(to bottom right, #24252e 10%, #797a7e 50%, #303141 100%);
 	border-image-slice: 1;
 	margin-top: -20px;
+	padding-top: 80px;
 }
 
 .hr-plans {
@@ -414,6 +415,13 @@ p.adv-description {
 	position: relative;
 	color: #012068;
 	transition: all 500ms ease;
+}
+
+.most-popular{
+	position: absolute;
+	top: -76px;
+	left: -59px;
+	scale: 0.9;
 }
 
 .text {

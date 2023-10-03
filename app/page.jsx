@@ -157,9 +157,12 @@ export default function Home() {
                 data-aos="fade-up"
               >
                 <div className="inner-box inner-box-basic">
-                  <div className="icon-box">
-                    <h3>MÁS SOLICITADO</h3>
+                  <div className="most-popular">
+                    <img src="../../img/most-popular.png" alt="" />
                   </div>
+                 {/*  <div className="icon-box">
+                    <h3>MÁS SOLICITADO</h3>
+                  </div> */}
                   <h5>BÁSICO</h5>
                   <p className="text-center">Para inversiones de bajo riesgo</p>
                   <hr className="hr-plans" />
