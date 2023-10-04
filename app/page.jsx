@@ -11,7 +11,7 @@ import {
 import { ImCheckmark } from "react-icons/im";
 import AOS from "aos";
 import "aos/dist/aos.css"; //
-import Calculator from "./components/Calculator";
+import Calculator from "./components/Calculator2";
 import Login from "./components/Login";
 import Plan from "./components/Plan";
 
@@ -29,114 +29,124 @@ export default function Home() {
     <>
       <Login setModal={setModal} modal={modal} />
       <Plan setModal={setModal2} modal={modal2} type={investmentType} />
-      <div className="container-fluid header-cont pe-0">
-        <div className="header-cont2">
-          <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container">
-              <a className="navbar-brand" href="#">
-                <img src="../../img/logo.svg" className="w-100" alt="logo" />
-              </a>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active"
-                      href="#"
-                      onClick={() => {
-                        setModal(true);
-                      }}
-                    >
-                      Ingresar
+      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" style={{ height: "100px" }}>
+        <div className="container">
+          <a className="navbar-brand" href="#">
+            <img src="../../img/logo.svg" className="w-100" alt="logo" />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav gap-3">
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Idioma
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Ingles
                     </a>
                   </li>
-                  <li className="nav-item dropdown">
-                    <a
-                      className="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Idioma
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Español
                     </a>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Ingles
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Español
-                        </a>
-                      </li>
-                    </ul>
                   </li>
                 </ul>
-              </div>
-            </div>
-          </nav>
-
-          <header className="main-header container">
-            <h2 className="mb-5" data-aos="fade-up">
-              Tu capital generando
-              <br />
-              rendimientos
-              <span> diarios</span>
-            </h2>
-            <div className="row">
-              <div
-                className="col-12 col-md-4 col-lg-2"
-                data-aos="fade-up"
-                data-aos-delay="100"
-              >
-                <h4 className="adv-number">14%</h4>
-                <h4 className="adv-title my-3">Rendimiento mensual en USD</h4>
-                <p className="adv-description">
-                  Con BONORUM GROUP obtienes una tasa fija de hasta <b>14%</b>{" "}
-                  mensual
-                </p>
-              </div>
-              <div
-                className="col-12 col-md-4 col-lg-2"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <h4 className="adv-number">
-                  <FaMoneyBillTransfer className="icon" />{" "}
-                </h4>
-                <h4 className="adv-title my-3">Retiros disponibles</h4>
-                <p className="adv-description">
-                  Según la inversión puedes realizar retiros quincenales o
-                  mensuales
-                </p>
-              </div>
-              <div
-                className="col-12 col-md-4 col-lg-2"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <h4 className="adv-number">3%</h4>
-                <h4 className="adv-title my-3">Ganansias diarias</h4>
-                <p className="adv-description">
-                  Según la inversión gana hasta un 0.33% diario
-                </p>
-              </div>
-            </div>
-          </header>
+              </li>
+              <li className="nav-item d-flex align-items-center">
+                <a
+                  className="nav-link btn-style-one "
+                  href="#"
+                  onClick={() => {
+                    setModal(true);
+                  }}
+                >
+                  Ingresar
+                </a>
+              </li>
+              
+            </ul>
+          </div>
         </div>
+      </nav>
+
+
+      <div className="container-fluid header-cont pe-0">
+        <header className="main-header container">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-7">
+              <h2 data-aos="fade-up">
+                Tu capital generando
+                <br />
+                rendimientos
+                <span> diarios</span>
+              </h2>
+              <div className="row" style={{marginTop: "100px"}}>
+                <div
+                  className="col-12 col-md-4"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
+                  <h4 className="adv-number">14%</h4>
+                  <h4 className="adv-title my-3">Rendimiento mensual en USD</h4>
+                  <p className="adv-description">
+                    Con BONORUM GROUP obtienes una tasa fija de hasta <b>14%</b>{" "}
+                    mensual
+                  </p>
+                </div>
+                <div
+                  className="col-12 col-md-4"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  <h4 className="adv-number">
+                    <FaMoneyBillTransfer className="icon" />{" "}
+                  </h4>
+                  <h4 className="adv-title my-3">Retiros disponibles</h4>
+                  <p className="adv-description">
+                    Según la inversión puedes realizar retiros quincenales o
+                    mensuales
+                  </p>
+                </div>
+                <div
+                  className="col-12 col-md-4"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                >
+                  <h4 className="adv-number">3%</h4>
+                  <h4 className="adv-title my-3">Ganansias diarias</h4>
+                  <p className="adv-description">
+                    Según la inversión gana hasta un 0.33% diario
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-5">
+              <img className="w-100" src="../../img/header_cel.png" alt="" />
+            </div>
+          </div>
+
+        </header>
       </div>
+
+      {/* PLANS */}
 
       <div className="container-fluid px-0">
         <section
@@ -160,7 +170,7 @@ export default function Home() {
                   <div className="most-popular">
                     <img src="../../img/most-popular.png" alt="" />
                   </div>
-                 {/*  <div className="icon-box">
+                  {/*  <div className="icon-box">
                     <h3>MÁS SOLICITADO</h3>
                   </div> */}
                   <h5>BÁSICO</h5>
@@ -291,11 +301,11 @@ export default function Home() {
       <section className="calc-section bg_4">
         <div className="auto-container">
           <div className="row align-items-center">
-            <div className="content-column col-lg-6 col-md-12 col-sm-12 ">
-              <div className="inner-column">
+            <div className="content-column col-12 col-lg-6">
+              <div className="inner-column pe-4">
                 <div className="sec-title">
                   <h2>
-                    Calcula los beneficios <br /> escogiendo el tipo de{" "}
+                    Calcula los beneficios <br /> de tu{" "}
                     <span>inversión</span>
                   </h2>
                 </div>
@@ -308,16 +318,11 @@ export default function Home() {
                     tiempo, para una asesoría más acertiva te recomendamos que
                     te pongas en contacto con uno de nuestros asesores.
                   </p>
-                  <p>
-                    *Nota: los valores mínimos y máximos del porcentaje de
-                    ganancia dependen del tipo de inversión seleccionado y el
-                    valor ingresado.
-                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="video-column col-lg-6 col-md-12 col-sm-12">
+            <div className="video-column col-12 col-lg-6">
               <div className="inner-column" data-aos="fade-up">
                 <Calculator />
               </div>

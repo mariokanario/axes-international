@@ -1,5 +1,6 @@
 .bg-body-tertiary {
-	background-color: rgba(255, 255, 255, 0) !important;
+	background-color: white !important;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.20)
 }
 
 @media (max-width: 768px) {
@@ -11,10 +12,10 @@
 .btn-style-one {
 	position: relative;
 	display: inline-block;
-	padding: 10px 72px 10px 30px;
+	padding: 10px 72px 10px 30px !important;
 	line-height: 24px;
 	background: #3241ff;
-	color: #ffffff;
+	color: #ffffff !important;
 	font-size: 14px;
 	cursor: pointer;
 	font-weight: 400;
@@ -28,7 +29,7 @@
 .btn-style-one:hover {
 	background: none;
 	border-color: #3241ff;
-	color: #3241ff;
+	color: #3241ff !important;
 	transition: .2s;
 }
 
@@ -140,7 +141,6 @@
 .nav-link, a.active {
 	position: relative;
 	display: block;
-	color: #ffffff !important;
 	text-align: center;
 	line-height: 30px;
 	text-transform: capitalize;
@@ -168,11 +168,11 @@
 	background-repeat: no-repeat;
 }
 
-.header-cont2 {
+/* .header-cont2 {
 	background-image: url(../public/img/header_img.png);
 	background-position: top right;
 	background-repeat: no-repeat;
-}
+} */
 
 @media (max-width: 1140px) {
 	.header-cont2 {
@@ -196,16 +196,17 @@
 }
 
 .main-header {
-	padding: 200px 0px 150px 0px;
+	padding: 130px 0px 150px 0px;
 }
 
 
 h2 {
 	color: #012068;
+	font-size: 50px;
 }
 
 .main-header h2 {
-	font-size: 45px;
+	font-size: 65px;
 }
 
 
@@ -417,7 +418,7 @@ p.adv-description {
 	transition: all 500ms ease;
 }
 
-.most-popular{
+.most-popular {
 	position: absolute;
 	top: -76px;
 	left: -59px;
@@ -537,11 +538,55 @@ p.adv-description {
 .calculator {
 	width: 100%;
 	border-radius: 40px;
-	box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.60);
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.30);
 	padding: 40px 20px;
 	background-color: white;
 }
 
+.calc-type {
+	border: solid 1px #d6d6d6;
+	padding: 10px 40px;
+	border-radius: 30px;
+}
+
+.calc-type-active {
+	background-color: #1940b0;
+	color: white;
+}
+
+.range-c1 {
+	accent-color: #1940b0;
+	background-color: #1940b0;
+}
+
+.range-c2 {
+	accent-color: #aa34e6;
+	background-color: #aa34e6;
+}
+
+.range-c3 {
+	accent-color: black;
+	background-color: black;
+}
+
+.txt-range {
+	width: 50%;
+	text-align: center;
+}
+
+.txt-range h3 {
+	font-size: 45px;
+	font-weight: 300;
+}
+
+.txt-range p {
+	font-size: 20px;
+}
+
+.txt-range span {
+	color: gray;
+	font-size: 20px;
+}
 
 
 
