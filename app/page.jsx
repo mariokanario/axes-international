@@ -104,10 +104,10 @@ export default function Home() {
                   data-aos="fade-up"
                   data-aos-delay="100"
                 >
-                  <h4 className="adv-number">14%</h4>
+                  <h4 className="adv-number">10%</h4>
                   <h4 className="adv-title my-3">Rendimiento mensual en USD</h4>
                   <p className="adv-description">
-                    Con BONORUM GROUP obtienes una tasa fija de hasta <b>14%</b>{" "}
+                    Con BONORUM GROUP obtienes una tasa fija de hasta <b>10%</b>{" "}
                     mensual
                   </p>
                 </div>

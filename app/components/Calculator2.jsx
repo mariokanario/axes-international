@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import CurrencyInput from "react-currency-input-field";
 
+const numberFormat = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 1
+});
 const Calculator = () => {
   const types = [
     { name: "Básico", percentage: 0.14, min: 400, max: 4999 },
@@ -30,22 +35,23 @@ const Calculator = () => {
 
   const [valueRatio, setValueRatio] = useState(400)
   const [type, setType] = useState("Básico");
-  const [percentage, setPercentage] = useState(0.14);
+  const [percentage, setPercentage] = useState(10);
   const [rentability, setRentability] = useState();
 
 
   useEffect(() => {
     if (valueRatio >= 400 && valueRatio <= 4999) {
       setType("Básico")
-      setPercentage(0.14)
+      setPercentage(10)
     } else if (valueRatio >= 5000 && valueRatio <= 9999) {
       setType("Inversor")
-      setPercentage(0.1)
+      setPercentage(7)
     } else if (valueRatio >= 10000) {
       setType("Élite")
-      setPercentage(0.07)
+      setPercentage(5)
     }
-    setRentability(Math.round(valueRatio * percentage))
+
+    setRentability(numberFormat.format(Math.round(valueRatio * (percentage/100))))
   }, [valueRatio])
 
 
@@ -81,11 +87,11 @@ const Calculator = () => {
         <div className="w-100 d-flex justify-content-between mt-5">
           <div className="txt-range">
             <p>Capital a invertir</p>
-            <h3><span>USDT</span> {valueRatio >= 20000 && "+"}{valueRatio.toLocaleString()} </h3>
+            <h3> {valueRatio >= 20000 && "+"}{numberFormat.format(valueRatio.toLocaleString())} <small style={{fontSize: 12}}>USDT</small></h3>
           </div>
           <div className="txt-range">
-            <p>Rentabilidad</p>
-            <h3 className="fw-bold"><span className="fw-light">USDT </span> {rentability}</h3>
+            <p>Rentabilidad mensual</p>
+            <h3 className="fw-bold">{rentability} <small style={{fontSize: 12}} className="fw-light">USDT </small></h3>
             <p>Porcentaje {percentage} %</p>
           </div>
         </div>
