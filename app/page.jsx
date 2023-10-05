@@ -14,9 +14,9 @@ import "aos/dist/aos.css"; //
 import Calculator from "./components/Calculator2";
 import Login from "./components/Login";
 import Plan from "./components/Plan";
+import Nav from "./components/Nav";
 
 export default function Home() {
-  const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [investmentType, setInvestmentType] = useState();
 
@@ -27,65 +27,9 @@ export default function Home() {
 
   return (
     <>
-      <Login setModal={setModal} modal={modal} />
+      
       <Plan setModal={setModal2} modal={modal2} type={investmentType} />
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" style={{ height: "100px" }}>
-        <div className="container">
-          <a className="navbar-brand" href="#">
-            <img src="../../img/logo.svg" className="w-100" alt="logo" />
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav gap-3">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Idioma
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Ingles
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Español
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item d-flex align-items-center">
-                <a
-                  className="nav-link btn-style-one "
-                  href="#"
-                  onClick={() => {
-                    setModal(true);
-                  }}
-                >
-                  Ingresar
-                </a>
-              </li>
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
 
       <div className="container-fluid header-cont pe-0">

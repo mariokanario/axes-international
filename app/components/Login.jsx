@@ -1,10 +1,12 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
-import {  Modal, ModalBody } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
+import Link from 'next/link';
+
 
 function Login({ setModal, modal }) {
 
-
+    // const navigate = useNavigate()
 
     return (
         <div>
@@ -26,12 +28,16 @@ function Login({ setModal, modal }) {
                                 Cancelar
                                 <FaArrowRight className='icon' />
                             </button>
-                            <button className='btn-style-one mt-3 w-auto' onClick={() => {
+                            <Link href='/userDash'
+                                /* href='userDash' */
+                                className='btn-style-one mt-3 w-auto'
+                            onClick={() => {
                                 setModal(false)
-                            }}>
+                            }}
+                            >
                                 Ingresar
                                 <FaArrowRight className='icon' />
-                            </button>
+                            </Link>
 
                         </div>
 

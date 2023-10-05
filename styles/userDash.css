@@ -1,0 +1,90 @@
+main {
+
+    background-color: #F8F8F8;
+    margin-top: 100px;
+    padding-top: 10px;
+}
+
+.alert {
+    width: 75%;
+    border: 2px solid #006FE3;
+    margin: 30px auto;
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 22px;
+    font-size: 20px;
+    color: #006FE3;
+}
+
+.alert2 {
+    margin: 0 auto;
+    border-radius: 22px;
+    font-size: 20px;
+    color: #006FE3;
+    text-align: center;
+}
+
+.alert .icon-alert {
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.cards-invest {
+    width: 75%;
+    padding: 20px;
+    border: 0;
+    border-radius: 22px;
+
+}
+
+@media screen and (max-width: 992px) {
+    .cards-invest {
+        width: 100%;
+    }
+
+    .alert {
+        width: 100%;
+    }
+
+}
+
+.cards-invest h3 {
+    font-size: 45px;
+    font-weight: 300;
+}
+
+.cards-invest p {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.cards-invest small {
+    font-size: 12px;
+}
+
+.table h3 {
+    font-size: 35px;
+    font-weight: 300;
+}
+
+.dash-ico {
+    font-size: 23px;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin-right: 20px;
+}
+
+.di-1 {
+    background-color: #006FE3;
+}
+
+.di-2 {
+    background-color: #00BF7E;
+}
+
+.di-3 {
+    background-color: #8EC3FF;
+}
