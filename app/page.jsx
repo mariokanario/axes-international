@@ -395,7 +395,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="social-column col-lg-6 col-md-6 col-sm-12">
+            {/* <div className="social-column col-lg-6 col-md-6 col-sm-12">
               <ul>
                 <li className="follow">Siguenos: </li>
                 <li>
@@ -409,7 +409,7 @@ export default function Home() {
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

@@ -106,15 +106,13 @@ function Plan({ setModal, modal, type }) {
         <div>
             <Modal isOpen={modal} size='lg' >
                 <ModalBody>
-                    <h2>Contactar asesor</h2>
-                    <p>Para iniciar con una inversión deberás llenar los siguientes datos y uno de nuestros asesores se comunicará con usted.</p>
-                    <p>Tipo de inversión seleccionada: <span className='fw-bold'> {type} </span> </p>
+                    <h3>Plan: {type}</h3>
+                    <p>Para iniciar con una inversión completa el siguiente formulario para que uno de nuestros asesores se comunique con usted.</p>
                     <form
                         onSubmit={formik.handleSubmit}
                         className="form-calc row mx-auto pt-0"
                     >
-                        <div className="mb-3 form-group col-12 col-sm-6">
-                            <label for="name" className="form-label">Nombre</label>
+                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
                             <input
                                 type="text"
                                 className="form-control"
@@ -124,12 +122,15 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
+                            <label for="name" className="form-label">Nombre</label>
+
                             {formik.touched.name && formik.errors.name && (
                                 <small className="text-danger">{formik.errors.name}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6">
-                            <label for="email" className="form-label">Correo</label>
+                       
+                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
+                            
                             <input
                                 className="form-control"
                                 type="email"
@@ -139,12 +140,13 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
+                            <label for="email" className="form-label">Correo</label>
                             {formik.touched.email && formik.errors.email && (
                                 <small className="text-danger">{formik.errors.email}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6">
-                            <label for="cellphone" className="form-label">Teléfono</label>
+                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
+                            
                             <input
                                 type="tel"
                                 className="form-control"
@@ -154,12 +156,13 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
+                            <label for="cellphone" className="form-label">Teléfono</label>
                             {formik.touched.cellphone && formik.errors.cellphone && (
                                 <small className="text-danger">{formik.errors.cellphone}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6">
-                            <label for="country" className="form-label">País</label>
+                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
+                            
                             <input
                                 type="text"
                                 className="form-control"
@@ -169,12 +172,13 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
+                            <label for="country" className="form-label">País</label>
                             {formik.touched.country && formik.errors.country && (
                                 <small className="text-danger">{formik.errors.country}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6">
-                            <label for="city" className="form-label">Ciudad</label>
+                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
+                            
                             <input
                                 type="text"
                                 className="form-control"
@@ -183,6 +187,7 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
+                            <label for="city" className="form-label">Ciudad</label>
                             {formik.touched.city && formik.errors.city && (
                                 <small className="text-danger">{formik.errors.city}</small>
                             )}

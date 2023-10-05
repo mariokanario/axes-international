@@ -341,27 +341,21 @@ p.adv-description {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 30px 0px 20px 0px;
+	padding: 50px 0px 30px 0px;
 	border-radius: 7px;
 	transition: .3s;
-	/* borde degradado */
-	border: 5px solid transparent;
-	background: linear-gradient(to right, #d3d3d6 0%, #ffffff 100%);
-	border-image: linear-gradient(to bottom right, #ffffff 0%, #a7abb3 100%);
-	border-image-slice: 1;
+	background-color: white;
+	border-radius: 20px;
 	box-shadow: 0px 7px 25px rgba(255, 255, 255, 0.25);
 }
 
 .inner-box:hover {
-	scale: 1.03;
+	scale: 1.01;
 	transition: .3s;
 	box-shadow: 0px 7px 25px rgba(255, 255, 255, 0.596);
 }
 
 .inner-box-basic {
-	border: 5px solid transparent;
-	border-image: linear-gradient(to bottom right, #24252e 10%, #797a7e 50%, #303141 100%);
-	border-image-slice: 1;
 	margin-top: -20px;
 	padding-top: 80px;
 }
@@ -484,10 +478,11 @@ p.adv-description {
 	padding: 10px 20px;
 	color: #333333;
 	height: 50px;
-	font-size: 15px;
-	border-radius: 4px;
+	font-size: 20px;
 	background: #ffffff;
-	border-color: #adadad;
+	border: none;
+	border-radius: 0px;
+	border-bottom: solid 1px #adadad;
 }
 
 .form-group input:focus, .form-group select:focus {
@@ -598,4 +593,22 @@ p.adv-description {
 	top: 80px;
 	opacity: 0.6;
 	z-index: -1;
+}
+
+
+/* MODAL */
+
+.modal-content {
+	border-radius: 30px;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.60);
+
+}
+
+.modal-body {
+	padding: 40px 50px;
+}
+
+.modal-body h3{
+	font-size: 40px;
+	margin-bottom: 30px;
 }
