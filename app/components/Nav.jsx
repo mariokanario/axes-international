@@ -29,7 +29,7 @@ const Nav = () => {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul className="navbar-nav gap-3">
+                        <ul className="navbar-nav align-items-center gap-4 p-5 p-lg-0">
                             <li className="nav-item dropdown">
                                 <a
                                     className="nav-link dropdown-toggle"

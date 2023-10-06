@@ -105,7 +105,7 @@ export default function Home() {
               <span> ingresos</span>
             </h2>
 
-            <div className="clearfix">
+            <div className="clearfix row p-4">
               <div
                 className="services-block col-lg-4 col-md-6 col-sm-12"
                 data-aos="fade-up"

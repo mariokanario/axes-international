@@ -147,19 +147,23 @@
 	letter-spacing: 0px;
 	opacity: 1;
 	font-weight: 600;
-	padding: 39px 0px;
 	font-size: 16px;
 	font-family: 'Poppins', sans-serif;
 }
 
-@media (max-width: 1140px) {
-	.nav-link, a.active {
-		color: #222222 !important;
+@media (max-width: 992px) {
+	.navbar-collapse {
+		position: absolute;
+		width: 100%;
+		right: 0;
+		top: 103px;
 	}
 }
 
+
 .navbar-collapse {
 	flex-grow: 0;
+	background-color: white;
 }
 
 /* HEADER */
