@@ -613,10 +613,14 @@ p.adv-description {
 	margin-bottom: 30px;
 }
 
-.hr-vertical{
+.hr-vertical {
 	border: 0;
 	width: 1px;
 	height: 100%;
 	background-color: gray;
 	padding: 0;
+}
+
+.swal2-title::after {
+	content: none;
 }

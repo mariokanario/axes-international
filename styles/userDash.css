@@ -1,12 +1,24 @@
-main {
-
+body {
     background-color: #F8F8F8;
-    margin-top: 100px;
+}
+
+main {
+    margin-top: 120px;
     padding-top: 10px;
 }
 
+.container-dash {
+    padding: 0 10%;
+}
+
+@media screen and (max-width: 992px) {
+    .container-dash {
+        padding: 0;
+    }
+
+}
+
 .alert {
-    width: 75%;
     border: 2px solid #006FE3;
     margin: 30px auto;
     padding: 22px;
@@ -24,6 +36,9 @@ main {
     font-size: 20px;
     color: #006FE3;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .alert .icon-alert {
@@ -32,23 +47,13 @@ main {
 }
 
 .cards-invest {
-    width: 75%;
     padding: 20px;
     border: 0;
     border-radius: 22px;
 
 }
 
-@media screen and (max-width: 992px) {
-    .cards-invest {
-        width: 100%;
-    }
 
-    .alert {
-        width: 100%;
-    }
-
-}
 
 .cards-invest h3 {
     font-size: 45px;
@@ -87,4 +92,31 @@ main {
 
 .di-3 {
     background-color: #8EC3FF;
+}
+
+.pay h3 {
+    font-size: 55px;
+    font-weight: 300;
+}
+
+.pay p {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.pay small {
+    font-size: 12px;
+}
+
+.cards-tuto {
+    margin-top: 100px;
+    padding: 30px;
+    border: 0;
+    border-radius: 22px;
+    color: white;
+    background: linear-gradient(140deg, rgb(0, 111, 227) 0%, rgba(80, 162, 250, 0.32) 127%) 0% 0% no-repeat padding-box padding-box transparent;
+}
+
+.cards-tuto h4{
+    font-size: 30px;
 }
