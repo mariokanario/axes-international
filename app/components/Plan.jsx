@@ -7,6 +7,7 @@ import { Modal, ModalBody } from 'reactstrap';
 import Swal from 'sweetalert2'
 
 import dataJson from "../../json/data.json";
+import { API } from '@/config';
 
 
 function Plan({ setModal, modal, type }) {
@@ -46,7 +47,7 @@ function Plan({ setModal, modal, type }) {
         onSubmit: async (data) => {
             // console.log(data);
             try {
-                const response = await axios.post("http://216.238.113.244:4000/user/possibleInvestor/landing", data);
+                const response = await axios.post(`${API}/user/possibleInvestor/landing`, data);
                 const { message } = response.data;
                 setMessage(message)
                 console.log(message);
