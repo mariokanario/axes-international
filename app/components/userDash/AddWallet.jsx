@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Swal from "sweetalert2";
 import axios from "axios";
 import * as yup from "yup";
@@ -6,10 +6,15 @@ import { useFormik } from "formik";
 import { API } from "@/config";
 import { GoCreditCard } from 'react-icons/go';
 import { FaArrowRight } from 'react-icons/fa6';
+import { Context } from '../../context/Provider'
+
 
 const AddWallet = () => {
 
+    
     const [isLoading, setIsLoading] = useState(false);
+    const { getWallet } = useContext(Context)
+
 
     const Schema = yup
         .object({
@@ -25,18 +30,29 @@ const AddWallet = () => {
         onSubmit: async (data) => {
             try {
                 setIsLoading(true);
-                const response = await axios.post(`${API}/auth/login`, data);
-                Swal.fire({
-                    title: 'Cambio exitoso',
-                    text: 'El número de tu billetera a sido agregado.',
-                    icon: 'info',
-                    confirmButtonText: 'Aceptar'
-                })
+                const response = await axios.put(`${API}/user/update/wallet`, data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } });
+                console.log(response?.data?.message);
+                 if (response?.data?.message == "update wallet success"){
+                    Swal.fire({
+                        title: 'Cambio exitoso',
+                        text: 'El número de tu billetera a sido agregado.',
+                        icon: 'info',
+                        confirmButtonText: 'Aceptar'
+                    })
+                }
+                getWallet()
                 setIsLoading(false);
+                formik.resetForm()
             } catch (err) {
-                if (
-                    err?.response?.data?.message == "user search by credentials not match"
-                ) {
+                if (err?.response?.data?.message == "conflict user" ) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "El usuario no existe, intentalo nuevamente",
+                        icon: "error",
+                        confirmButtonText: "Cerrar",
+                    });
+                }
+                if (err?.response?.data?.message == "precondition failed") {
                     Swal.fire({
                         title: "Error",
                         text: "Ha ocurrido un error, intentalo nuevamente",

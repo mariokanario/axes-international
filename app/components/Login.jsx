@@ -71,7 +71,7 @@ function Login({ setModal, modal }) {
             onSubmit={formik.handleSubmit}
           >
             <div className="mb-3 form-group">
-              <label for="mail" className="form-label">
+              <label htmlFor="mail" className="form-label">
                 Usuario
               </label>
               <input
@@ -87,7 +87,7 @@ function Login({ setModal, modal }) {
               )}
             </div>
             <div className="mb-3 form-group">
-              <label for="pass" className="form-label">
+              <label htmlFor="pass" className="form-label">
                 Contraseña
               </label>
               <input

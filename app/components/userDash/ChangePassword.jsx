@@ -33,23 +33,32 @@ const ChangePassword = () => {
                 setIsLoading(true);
                 const response = await axios.put(`${API}/user/update/password/profile`, data, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } });
                 console.log(response);
-                Swal.fire({
-                    title: 'Cambio exitoso',
-                    text: 'Para finalizar el proceso deberás iniciar sesión nuevamente',
-                    icon: 'info',
-                    confirmButtonText: 'Aceptar',
-                    preConfirm: () => {
-                        localStorage.removeItem('name');
-                        localStorage.removeItem('jwt');
-                        router.push("/", { scroll: false });
+                if (response?.data?.errors?.message == "password does not correct") {
+                    Swal.fire({
+                        title: "Error",
+                        text: "La contraseña que ingresaste no es la correcta",
+                        icon: "error",
+                        confirmButtonText: "Cerrar",
+                    });
+                }
 
-                    }
-                })
+                if (response?.data?.message == "update password success") {
+                    Swal.fire({
+                        title: 'Cambio exitoso',
+                        text: 'Para finalizar el proceso deberás iniciar sesión nuevamente',
+                        icon: 'info',
+                        confirmButtonText: 'Aceptar',
+                        preConfirm: () => {
+                            localStorage.removeItem('name');
+                            localStorage.removeItem('jwt');
+                            router.push("/", { scroll: false });
+
+                        }
+                    })
+                }
                 setIsLoading(false);
             } catch (err) {
-                if (
-                    err?.response?.data?.message == "token_decode_unauthorized"
-                ) {
+                if (err?.response?.data?.message == "token_decode_unauthorized") {
                     Swal.fire({
                         title: "Error",
                         text: "Ha ocurrido un error, intentalo nuevamente",
@@ -57,6 +66,16 @@ const ChangePassword = () => {
                         confirmButtonText: "Cerrar",
                     });
                 }
+
+                if (err?.response?.data?.message == "password does not correct") {
+                    Swal.fire({
+                        title: "Error",
+                        text: "La contraseña que ingresaste no es la correcta",
+                        icon: "error",
+                        confirmButtonText: "Cerrar",
+                    });
+                }
+                
                 console.log(err);
                 setIsLoading(false);
             }

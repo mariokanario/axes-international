@@ -30,7 +30,7 @@ const Calculator = () => {
     <div className="calculator">
       <form className="form-calc row mx-auto pt-0">
         <div className="mb-3 form-group">
-          <label for="tipo" className="form-label">
+          <label htmlFor="tipo" className="form-label">
             Tipo de inversión
           </label>
           <select id="tipo" name="" onChange={(e) => setType(e.target.value)}>
@@ -40,7 +40,7 @@ const Calculator = () => {
           </select>
         </div>
         <div className="mb-3 form-group">
-          <label for="valor" className="form-label">
+          <label htmlFor="valor" className="form-label">
             Valor en USD
           </label>
           <CurrencyInput
@@ -54,7 +54,7 @@ const Calculator = () => {
           />
         </div>
         {/* <div className="mb-3 form-group">
-          <label for="tiempo" className="form-label">
+          <label htmlFor="tiempo" className="form-label">
             Tiempo en meses
           </label>
           <select name="" id="tiempo">
@@ -72,7 +72,7 @@ const Calculator = () => {
           <FaArrowRight className="icon" />
         </button>
         <div className="mb-3 form-group">
-          <label for="rentabilidad" className="form-label">
+          <label htmlFor="rentabilidad" className="form-label">
             Rentabilidad mensual
           </label>
           <CurrencyInput

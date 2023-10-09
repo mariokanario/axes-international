@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Login from './Login';
 import Link from 'next/link';
-import { Context } from '../context/Provider'
 import AOS from "aos";
 import "aos/dist/aos.css"; //
 
@@ -9,8 +8,6 @@ const Nav = () => {
 
     const [modal, setModal] = useState(false);
     const [name, setName] = useState(localStorage.getItem('name') ?? "")
-
-    const { data, setLocalStorage } = useContext(Context);
 
     const deleteStorage = () => {
         localStorage.removeItem('name');
@@ -107,7 +104,6 @@ const Nav = () => {
                                             href="#"
                                             onClick={() => {
                                                 setModal(true);
-                                                setLocalStorage()
                                             }}
                                         >
                                             Ingresar

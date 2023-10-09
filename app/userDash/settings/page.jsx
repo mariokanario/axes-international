@@ -4,11 +4,22 @@ import Footer from '@/app/components/Footer'
 import Nav from '@/app/components/Nav'
 import AddWallet from '@/app/components/userDash/AddWallet'
 import ChangePassword from '@/app/components/userDash/ChangePassword'
-import React from 'react'
+import axios from "axios";
+import { API } from "@/config";
+import { Context } from '../../context/Provider'
+import { useContext, useEffect } from 'react'
+
+
 
 const Page = () => {
 
   const name = localStorage.getItem('name') ?? ""
+  const { wallet, getWallet } = useContext(Context)
+
+  useEffect(() => {
+    getWallet()
+  }, [])
+  
 
 
   return (
@@ -24,7 +35,7 @@ const Page = () => {
             </div>
             <div>
               <p>Billetera virtual</p>
-              <h3>a78dfg67cv6c5vb764</h3>
+              <h3>{wallet ? wallet : 'No ha agregado una billetera'}</h3>
             </div>
 
           </div>

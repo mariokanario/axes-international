@@ -113,7 +113,8 @@ function Plan({ setModal, modal, type }) {
                         onSubmit={formik.handleSubmit}
                         className="form-calc row mx-auto pt-0"
                     >
-                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
+                        <div className="mb-3 form-group col-12 col-sm-6">
+                            <label htmlFor="name" className="form-label mb-1">Nombre</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -123,15 +124,13 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            <label for="name" className="form-label">Nombre</label>
-
                             {formik.touched.name && formik.errors.name && (
                                 <small className="text-danger">{formik.errors.name}</small>
                             )}
                         </div>
                        
-                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
-                            
+                        <div className="mb-3 form-group col-12 col-sm-6">
+                            <label htmlFor="email" className="form-label mb-1">Correo</label>
                             <input
                                 className="form-control"
                                 type="email"
@@ -141,13 +140,12 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            <label for="email" className="form-label">Correo</label>
                             {formik.touched.email && formik.errors.email && (
                                 <small className="text-danger">{formik.errors.email}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
-                            
+                        <div className="mb-3 form-group col-12 col-sm-6">
+                            <label htmlFor="cellphone" className="form-label mb-1">Teléfono</label>
                             <input
                                 type="tel"
                                 className="form-control"
@@ -157,13 +155,12 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            <label for="cellphone" className="form-label">Teléfono</label>
                             {formik.touched.cellphone && formik.errors.cellphone && (
                                 <small className="text-danger">{formik.errors.cellphone}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
-                            
+                        <div className="mb-3 form-group col-12 col-sm-6">
+                            <label htmlFor="country" className="form-label mb-1">País</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -173,13 +170,12 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            <label for="country" className="form-label">País</label>
                             {formik.touched.country && formik.errors.country && (
                                 <small className="text-danger">{formik.errors.country}</small>
                             )}
                         </div>
-                        <div className="mb-3 form-group col-12 col-sm-6 form-floating">
-                            
+                        <div className="mb-3 form-group col-12 col-sm-6">
+                            <label htmlFor="city" className="form-label mb-1">Ciudad</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -188,7 +184,6 @@ function Plan({ setModal, modal, type }) {
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
-                            <label for="city" className="form-label">Ciudad</label>
                             {formik.touched.city && formik.errors.city && (
                                 <small className="text-danger">{formik.errors.city}</small>
                             )}
