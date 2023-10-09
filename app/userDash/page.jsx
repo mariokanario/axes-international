@@ -1,25 +1,25 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from '../components/Nav'
-import '../globals.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@/styles/style.css'
-import '@/styles/userDash.css'
 
 import { GoCreditCard, GoGraph, GoCalendar, GoAlert } from "react-icons/go";
 import { FaArrowRight } from 'react-icons/fa6';
 import Link from 'next/link';
+import Footer from '../components/Footer';
 
 
 const page = () => {
+
+  const [name, setName] = useState(localStorage.getItem('name') ?? "")
+
   return (
     <>
       <Nav />
       <main>
         <div className="container container-dash">
 
-          <h2>Bienvenido</h2>
+          <h2>Bienvenido {name}</h2>
 
           <div className="alert">
             <div>
@@ -166,6 +166,8 @@ const page = () => {
 
 
         </div>
+
+        <Footer />
       </main>
     </>
   )

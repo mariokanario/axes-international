@@ -2,12 +2,9 @@
 
 import React from 'react'
 import Nav from '../../components/Nav'
-import '../../globals.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@/styles/style.css'
-import '@/styles/userDash.css'
 import { FaArrowRight } from 'react-icons/fa6';
 import Swal from 'sweetalert2'
+import Footer from '@/app/components/Footer';
 
 
 const Page = () => {
@@ -76,6 +73,8 @@ const Page = () => {
                         </div>
                     </div>
                 </div>
+
+                <Footer />
             </main>
         </>
     )

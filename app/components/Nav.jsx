@@ -1,12 +1,27 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Login from './Login';
 import Link from 'next/link';
-
+import { Context } from '../context/Provider'
+import AOS from "aos";
+import "aos/dist/aos.css"; //
 
 const Nav = () => {
 
     const [modal, setModal] = useState(false);
+    const [name, setName] = useState(localStorage.getItem('name') ?? "")
 
+    const { data, setLocalStorage } = useContext(Context);
+
+    const deleteStorage = () => {
+        localStorage.removeItem('name');
+        localStorage.removeItem('jwt'); 
+    }
+
+    useEffect(() => {
+        import("bootstrap/dist/js/bootstrap.bundle.min.js");
+        AOS.init();
+    }, [])
+    
 
     return (
 
@@ -30,7 +45,7 @@ const Nav = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav align-items-center gap-4 p-5 p-lg-0">
-                            <li className="nav-item dropdown">
+                            {/* <li className="nav-item dropdown">
                                 <a
                                     className="nav-link dropdown-toggle"
                                     href="#"
@@ -52,18 +67,55 @@ const Nav = () => {
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li className="nav-item d-flex align-items-center">
-                                <a
-                                    className="nav-link btn-style-one "
-                                    href="#"
-                                    onClick={() => {
-                                        setModal(true);
-                                    }}
-                                >
-                                    Ingresar
-                                </a>
-                            </li>
+                            </li> */}
+
+                            {
+                                name ?
+                                    <li className="nav-item dropdown">
+                                        <a
+                                            className="nav-link dropdown-toggle"
+                                            href="#"
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            {name}
+                                        </a>
+                                        <ul className="dropdown-menu">
+                                            <li>
+                                                <Link className="dropdown-item" href="/userDash">
+                                                    Inversiones
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link className="dropdown-item" href="/userDash/settings">
+                                                    Configurar cuenta
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link className="dropdown-item" href="/"
+                                                    onClick={deleteStorage}>
+                                                    Cerrar sesión
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                :
+                                    <li className="nav-item d-flex align-items-center">
+                                        <a
+                                            className="nav-link btn-style-one "
+                                            href="#"
+                                            onClick={() => {
+                                                setModal(true);
+                                                setLocalStorage()
+                                            }}
+                                        >
+                                            Ingresar
+                                        </a>
+                                    </li>
+
+                            }
+                            
 
                         </ul>
                     </div>

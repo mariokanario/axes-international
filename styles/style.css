@@ -477,16 +477,25 @@ p.adv-description {
 .form-group input, .form-group select {
 	position: relative;
 	display: block;
-	width: 100%;
 	line-height: 28px;
-	padding: 10px 20px;
-	color: #333333;
-	height: 50px;
-	font-size: 20px;
+	/* padding: 10px 20px; */
+	/* color: #333333; */
+	/* font-size: 20px; */
 	background: #ffffff;
-	border: none;
-	border-radius: 0px;
-	border-bottom: solid 1px #adadad;
+	width: 100%;
+	height: 3.75rem;
+	font-size: 1.18rem;
+	color: gray;
+	padding: 0px 1.68rem;
+	border: 1px solid rgb(203, 203, 203);
+	border-radius: 11px;
+}
+
+.form-group label {
+	color: rgb(151, 151, 151);
+	font-size: 1.25rem;
+	display: inline-block;
+	margin-bottom: 1rem;
 }
 
 .form-group input:focus, .form-group select:focus {

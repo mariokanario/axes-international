@@ -65,6 +65,7 @@ function Login({ setModal, modal }) {
     <div>
       <Modal isOpen={modal}>
         <ModalBody>
+          <h3 className="title-form">Ingresar</h3>
           <form
             className="form-calc row mx-auto pt-0"
             onSubmit={formik.handleSubmit}
