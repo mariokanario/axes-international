@@ -1,15 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Nav from "./../components/Nav";
-import "./../globals.css";
+import Nav from "../components/Nav";
+import "../globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/style.css";
 import "@/styles/userDash.css";
+
+import { GoCreditCard, GoGraph, GoCalendar, GoAlert } from "react-icons/go";
 import { FaArrowRight } from "react-icons/fa6";
-import Swal from "sweetalert2";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import moment from "moment";
 import { API } from "@/config";
 
 const numberFormat = new Intl.NumberFormat("en-US", {
@@ -18,168 +21,235 @@ const numberFormat = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 1,
 });
 
-const Page = ({ params }) => {
+const page = () => {
   const navigation = useRouter();
-  const [isLoadingPayment, setIsLoadingPayment] = useState(false);
+  const [profile, setProfile] = useState();
+  const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [isLoadingInvesment, setIsLoadingInvesment] = useState(true);
-  const [investmen, setInvestment] = useState();
+  const [isLoadingPaymentInfo, setIsLoadingPaymentInfo] = useState(false);
+  const [invesment, setInvestment] = useState([]);
+  const [payPending, setPayPending] = useState();
 
   useEffect(() => {
-    if (params?.id) {
-      getInvestment();
+    validProfile();
+    getInvestment();
+  }, []);
+
+  const validProfile = async () => {
+    setIsLoadingProfile(true);
+    try {
+      const response = await axios.get(`${API}/auth/profile`, {
+        headers: { Authorization: `Bearer ${localStorage.jwt}` },
+      });
+      setProfile(response.data);
+      setIsLoadingProfile(false);
+    } catch (e) {
+      console.log(e);
+      setIsLoadingProfile(false);
+      navigation.replace("/");
     }
-  }, [params]);
+  };
 
   const getInvestment = async () => {
     setIsLoadingInvesment(true);
     try {
-      const { data } = await axios.get(`${API}/investment/${params?.id}`, {
+      const { data } = await axios.get(`${API}/investment`, {
         headers: { Authorization: `Bearer ${localStorage.jwt}` },
       });
-      if (data?.data && data?.data?.status == "PENDING_PAYMENT") {
-        setInvestment(data?.data);
-      } else {
-        navigation.replace("/userDash");
-      }
+      setInvestment(data?.data ?? []);
+      setPayPending(data?.data?.find((e) => e.status == "PENDING_PAYMENT"));
       setIsLoadingInvesment(false);
     } catch (e) {
       setIsLoadingInvesment(false);
-      navigation.replace("/userDash");
+      navigation.replace("/");
     }
   };
 
-  const payment = async () => {
-    setIsLoadingPayment(true);
+  const getPaymentInfo = async (investment_id) => {
+    setIsLoadingPaymentInfo(true);
     try {
-      const { data } = await axios.post(
-        `${API}/payment`,
-        JSON.stringify({
-          investmen_id: params.id,
-          package_name: investmen?.package_id?.name,
-        }),
+      const { data } = await axios.get(
+        `${API}/payment/${investment_id}/PROCESSING_PAYMENT`,
         {
-          headers: {
-            Authorization: `Bearer ${localStorage.jwt}`,
-            "Content-Type": "application/json",
-          },
+          headers: { Authorization: `Bearer ${localStorage.jwt}` },
         }
       );
-      if (data?.message == "payment_created") {
-        sweetAlert(data?.data?.checkout_url);
-      } else if (data?.message == "investment_not_found") {
-        Swal.fire({
-          title: "Error",
-          text: "La inversión no existe o no se encuentra pendiente de pago.",
-          icon: "error",
-          confirmButtonText: "Cerrar",
-        });
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "Algo salió mal, intenta nuevamente, si el problema persiste comunicate en el menú de contacto",
-          icon: "error",
-          confirmButtonText: "Cerrar",
-        });
+      if(data?.data){
+
+        window.open(data?.data?.status_url, "_blank");
       }
-      setIsLoadingPayment(false);
+      setIsLoadingPaymentInfo(false);
     } catch (e) {
-      Swal.fire({
-        title: "Error",
-        text: "Algo salió mal, intenta nuevamente, si el problema persiste comunicate en el menú de contacto",
-        icon: "error",
-        confirmButtonText: "Cerrar",
-      });
-      setIsLoadingPayment(false);
+      setIsLoadingPaymentInfo(false);
+      navigation.replace("/");
     }
   };
 
-  const sweetAlert = (url) => {
-    Swal.fire({
-      title: "Enlace de pago generado correctamente",
-      text: "A continuación serás redireccionado a un sitio externo en el cual podrás realizar el pago. Por favor luego de finalizar el pago vuelve a esta página.",
-      icon: "info",
-      confirmButtonText: "Aceptar",
-      preConfirm: () => {
-        window.open(url, "_blank");
-        sweetAlertConfirm();
-      },
-    });
+  const getInfo = (e) => {
+    if (e.status == "PENDING_PAYMENT") {
+      return (
+        <div className="alert2">
+          Para que este paquete comience a operar debe realizar el pago de la
+          inversión.
+          <Link href={`/userDash/pay/${e?.id}`} className="btn-style-one mt-3">
+            Iniciar pago
+            <FaArrowRight className="icon" />
+          </Link>
+        </div>
+      );
+    } else if (e.status == "PROCESSING_PAYMENT") {
+      return (
+        <>
+          <div className="alert3">
+            <p>
+              La inversión se encuentra en proceso de pago, al finalizar podras
+              visualizar los rendimientos en este espacio
+              <button
+                disabled={isLoadingPaymentInfo}
+                onClick={() => getPaymentInfo(e.id)}
+                className="btn-style-one mt-3"
+              >
+                {isLoadingPaymentInfo
+                  ? "Obteniendo estado..."
+                  : "Ver estado de pago en COINPAYMENT"}
+                <FaArrowRight className="icon" />
+              </button>
+            </p>
+          </div>
+        </>
+      );
+    } else if (e.status == "PROCESSING_PAYMENT") {
+      return (
+        <>
+          <div>
+            <p>Pagos realizados</p>
+
+            <table className="table mt-4">
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div className="d-flex flex-column align-items-end">
+            <p>Total</p>
+            <h3>
+              $0<small>USDT</small>
+            </h3>
+          </div>
+        </>
+      );
+    }
   };
 
-  const sweetAlertConfirm = () => {
-    Swal.fire({
-      title: "Esperando la confirmación del pago",
-      text: "Se esta procesando el pago en la página externa. Cuando finalice te estaremos informado.",
-      icon: "warning",
-    });
+  const getTitleState = (e) => {
+    if (e.status == "PENDING_PAYMENT") {
+      return <b style={{ color: "#006fe3" }}>Pendiente de pago</b>;
+    } else if (e.status == "PROCESSING_PAYMENT") {
+      return <b style={{ color: "#8ec3ff" }}>Pago en proceso</b>;
+    } else if (e.status == "ACTIVE") {
+      return <b style={{ color: "#00bf7e" }}>Activa</b>;
+    } else if (e.status == "FINISHED") {
+      return <b style={{ color: "#000000" }}>Finalizada</b>;
+    } else if (e.status == "CANCELLED") {
+      return <b style={{ color: "#ea001b" }}>Cancelada</b>;
+    }
   };
 
   return (
     <>
       <Nav />
       <main>
-        {isLoadingInvesment ? (
-          <div className="container">
-            <p>Cargando...</p>
-          </div>
-        ) : (
-          <div className="container container-dash pay">
-            <h2>Resumen del pago</h2>
-            <div className="row mt-5">
-              <div className="col-12 col-md-4">
-                <p>Tipo de paquete</p>
-                <h3>{investmen?.package_id?.name}</h3>
-              </div>
-              <div className="col-12 col-md-4">
-                <p>Valor a pagar</p>
-                <h3>
-                  {numberFormat.format(investmen?.valueUsd)}
-                  <small>USDT</small>
-                </h3>
-              </div>
-              <div className="col-12 col-md-4">
-                <p>Método de pago</p>
-                <button
-                  type="button"
-                  disabled={isLoadingPayment}
-                  className="btn-style-one mt-3"
-                  onClick={payment}
-                >
-                  {isLoadingPayment
-                    ? "Procesando..."
-                    : "Pagar con COINPAYMENTS"}
-                </button>
-              </div>
-            </div>
+        <div className="container container-dash">
+          <h2>Bienvenido {isLoadingProfile ? "..." : profile?.name} </h2>
 
-            <div className="card cards-tuto mb-5">
-              <div className="card-body row justify-content-between">
-                <div className="col-12 col-md-7">
-                  <h4>Como realizar el pago con CoinPayments</h4>
-                  <p className="mt-5">
-                    Te dejamos una pequeña guía de como realizar tus pagos con
-                    CoinPayments y cual es el proceso a realizar despúes de
-                    finalizado el pago
-                  </p>
-                  <button className="btn-style-one mt-5">
-                    Descargar documento
+          {isLoadingInvesment ? (
+            <p>Cargando...</p>
+          ) : (
+            <>
+              {payPending ? (
+                <div className="alert">
+                  <div>
+                    <h3>
+                      <GoAlert className="icon-alert" /> Tienes un pago
+                      pendiente
+                    </h3>
+                    <h4>
+                      Paquete <b>{payPending?.package_id?.name}</b>
+                    </h4>
+                    <h4>
+                      Valor a pagar{" "}
+                      <b>{numberFormat.format(payPending?.valueUsd)} USDT</b>
+                    </h4>
+                  </div>
+                  <Link
+                    href={`/userDash/pay/${payPending?.id}`}
+                    className="btn-style-one"
+                  >
+                    Iniciar pago
                     <FaArrowRight className="icon" />
-                  </button>
+                  </Link>
                 </div>
-                <div className="d-none d-md-block col-md-4">
-                  <img
-                    src="../../../img/dash/document.png"
-                    className="w-100"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
+              ) : null}
+
+              {invesment?.map((e) => (
+                <section className="d-flex justify-content-center">
+                  <div className="card cards-invest mb-5 w-100">
+                    <div className="card-body row justify-content-between">
+                      <div className="col-12 col-md-5">
+                        <p>Capital - {getTitleState(e)}</p>
+                        <h3>
+                          {numberFormat.format(e?.valueUsd)} <small>USDT</small>
+                        </h3>
+
+                        <div
+                          className="d-flex justify-content-between  align-items-baseline"
+                          style={{ marginTop: "30px" }}
+                        >
+                          <div className="d-flex align-items-center">
+                            <div className="dash-ico di-1">
+                              <GoCreditCard />
+                            </div>
+                            <p>Paquete</p>
+                          </div>
+                          <p>{e?.package_id?.name}</p>
+                        </div>
+                        <hr />
+                        <div className="d-flex justify-content-between align-items-baseline">
+                          <div className="d-flex align-items-center">
+                            <div className="dash-ico di-2">
+                              <GoGraph />
+                            </div>
+                            <p>Porcentaje de rentabilidad</p>
+                          </div>
+                          <p>{e.percentage[0]}%</p>
+                        </div>
+                        <hr />
+
+                        <div className="d-flex justify-content-between align-items-baseline">
+                          <div className="d-flex align-items-center">
+                            <div className="dash-ico di-3">
+                              <GoCalendar />
+                            </div>
+                            <p>
+                              Fecha <br /> de registro
+                            </p>
+                          </div>
+                          <p>{moment(e.created_at).format("D-M-Y")}</p>
+                        </div>
+                      </div>
+                      <hr className="hr-vertical  d-none d-md-block" />
+                      <div className="col-12 col-md-6 d-flex flex-column justify-content-between">
+                        {getInfo(e)}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              ))}
+            </>
+          )}
+        </div>
       </main>
     </>
   );
 };
 
-export default Page;
+export default page;
