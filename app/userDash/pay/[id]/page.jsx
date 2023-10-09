@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Nav from "./../components/Nav";
-import "./../globals.css";
+import Nav from "./../../../components/Nav";
+import "./../../../globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/style.css";
 import "@/styles/userDash.css";
