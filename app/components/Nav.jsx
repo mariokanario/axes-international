@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import Login from './Login';
 import Link from 'next/link';
 import AOS from "aos";
@@ -9,40 +9,42 @@ const Nav = () => {
     const [modal, setModal] = useState(false);
     const [name, setName] = useState(localStorage.getItem('name') ?? "")
 
-    const deleteStorage = () => {
-        localStorage.removeItem('name');
-        localStorage.removeItem('jwt'); 
-    }
 
-    useEffect(() => {
-        import("bootstrap/dist/js/bootstrap.bundle.min.js");
-        AOS.init();
-    }, [])
-    
+  const deleteStorage = () => {
+    localStorage.removeItem("name");
+    localStorage.removeItem("jwt");
+  };
 
-    return (
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+    AOS.init();
+  }, []);
 
-        <>
-            <Login setModal={setModal} modal={modal} />
-            <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" style={{ height: "100px" }}>
-                <div className="container">
-                    <Link className="navbar-brand" href="/">
-                        <img src="../../img/logo.svg" style={{width: "70%"}} alt="logo" />
-                    </Link>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul className="navbar-nav align-items-center gap-4 p-5 p-lg-0">
-                            {/* <li className="nav-item dropdown">
+  return (
+    <>
+      <Login setModal={setModal} modal={modal} />
+      <nav
+        className="navbar navbar-expand-lg bg-body-tertiary fixed-top"
+        style={{ height: "100px" }}
+      >
+        <div className="container">
+          <Link className="navbar-brand" href="/">
+            <img src="../../img/logo.svg" style={{ width: "70%" }} alt="logo" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav align-items-center gap-4 p-5 p-lg-0">
+              {/* <li className="nav-item dropdown">
                                 <a
                                     className="nav-link dropdown-toggle"
                                     href="#"
@@ -121,4 +123,4 @@ const Nav = () => {
     )
 }
 
-export default Nav
+export default Nav;

@@ -17,6 +17,7 @@
     "formik": "^2.4.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "moment": "^2.29.4",
     "next": "13.5.2",
     "react": "^18.2.0",
     "react-currency-input-field": "^3.6.11",
