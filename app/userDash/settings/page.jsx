@@ -7,13 +7,15 @@ import ChangePassword from "@/app/components/userDash/ChangePassword";
 import axios from "axios";
 import { API } from "@/config";
 import { Context } from "../../context/Provider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Page = () => {
-  const name = window.localStorage.getItem("name") ?? "";
   const { wallet, getWallet } = useContext(Context);
 
+  const [name, setName] = useState('');
+  
   useEffect(() => {
+    setName(localStorage.getItem("name") ?? "");
     getWallet();
   }, []);
 
