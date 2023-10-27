@@ -1,14 +1,12 @@
-import React, {  useEffect, useState } from 'react'
-import Login from './Login';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import Login from "./Login";
+import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css"; //
 
 const Nav = () => {
-
-    const [modal, setModal] = useState(false);
-    const [name, setName] = useState(localStorage.getItem('name') ?? "")
-
+  const [modal, setModal] = useState(false);
+  const [name, setName] = useState("");
 
   const deleteStorage = () => {
     localStorage.removeItem("name");
@@ -18,6 +16,7 @@ const Nav = () => {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap.bundle.min.js");
     AOS.init();
+    setName(localStorage.getItem("name"));
   }, []);
 
   return (
@@ -68,59 +67,63 @@ const Nav = () => {
                                 </ul>
                             </li> */}
 
-                            {
-                                name ?
-                                    <li className="nav-item dropdown">
-                                        <a
-                                            className="nav-link dropdown-toggle"
-                                            href="#"
-                                            role="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
-                                        >
-                                            {name}
-                                        </a>
-                                        <ul className="dropdown-menu">
-                                            <li>
-                                                <Link className="dropdown-item" href="/userDash">
-                                                    Inversiones
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link className="dropdown-item" href="/userDash/settings">
-                                                    Configurar cuenta
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link className="dropdown-item" href="/"
-                                                    onClick={deleteStorage}>
-                                                    Cerrar sesión
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                :
-                                    <li className="nav-item d-flex align-items-center">
-                                        <a
-                                            className="nav-link btn-style-one "
-                                            href="#"
-                                            onClick={() => {
-                                                setModal(true);
-                                            }}
-                                        >
-                                            Ingresar
-                                        </a>
-                                    </li>
-
-                            }
-                            
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </>
-    )
-}
+              {name ? (
+                <>
+                  <li className="nav-item d-flex align-items-center">
+                    <Link className="nav-link btn-style-one " href="/userDash">
+                      Inversiones
+                    </Link>
+                  </li>
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {name}
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          href="/userDash/settings"
+                        >
+                          Configurar cuenta
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="dropdown-item"
+                          href="/"
+                          onClick={deleteStorage}
+                        >
+                          Cerrar sesión
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item d-flex align-items-center">
+                  <a
+                    className="nav-link btn-style-one "
+                    href="#"
+                    onClick={() => {
+                      setModal(true);
+                    }}
+                  >
+                    Ingresar
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+};
 
 export default Nav;

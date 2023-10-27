@@ -21,7 +21,7 @@ const numberFormat = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 1,
 });
 
-const page = () => {
+const Page = () => {
   const navigation = useRouter();
   const [profile, setProfile] = useState();
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
@@ -252,4 +252,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
